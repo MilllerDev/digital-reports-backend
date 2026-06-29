@@ -1,0 +1,28 @@
+services:
+  digital-reports-db:
+    image: postgres:15.15
+    container_name: digital-reports-db
+    env_file:
+      - .env
+    volumes:
+      - digital-reports-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  digital-reports-backend:
+    build: .
+    container_name: digital-reports-backend
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - digital-reports-db
+    volumes:
+      - uploads-data:/app/uploads
+
+volumes:
+  digital-reports-data:
+    name: digital-reports-db
+  uploads-data:
+    name: digital-reports-files
