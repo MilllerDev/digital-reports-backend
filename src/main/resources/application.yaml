@@ -27,3 +27,6 @@ jwt:
   refresh-secret: ${JWT_REFRESH}
   expiration-access: ${JWT_EXP_ACCESS}
   expiration-refresh: ${JWT_EXP_REFRESH}
+
+app:
+  frontend-url: ${APP_FRONTEND_URL}

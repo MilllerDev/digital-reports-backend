@@ -37,7 +37,7 @@ public class UserRepositoryAdapter implements UserRepository {
     }
 
     @Override
-    public boolean existsByDni(String dni, String email) {
+    public boolean existsByDniEmail(String dni, String email) {
         return repositoryJpa.existsByDniAndEmail(dni, email);
     }
 }
