@@ -2,7 +2,7 @@ package com.uni.digitalreports.auth.infrastructure.adapter;
 
 import com.uni.digitalreports.auth.application.repository.TokenRepository;
 import com.uni.digitalreports.auth.domain.model.Token;
-import com.uni.digitalreports.auth.infrastructure.TokenMapper;
+import com.uni.digitalreports.auth.infrastructure.dto.TokenMapper;
 import com.uni.digitalreports.auth.infrastructure.entity.TokenEntity;
 import com.uni.digitalreports.auth.infrastructure.repository.TokenRepositoryJpa;
 import org.springframework.stereotype.Repository;

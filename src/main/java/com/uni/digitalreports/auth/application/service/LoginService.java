@@ -35,6 +35,6 @@ public class LoginService implements LoginUseCase {
 
         Token token = Token.createRefreshToken(refreshToken, user.getId(), jwtService.getRefreshTokenExpiration());
         tokenRepository.save(token);
-        return new AuthResponse(accessToken, refreshToken);
+        return new AuthResponse(accessToken, refreshToken, user.getRole());
     }
 }

@@ -1,4 +1,4 @@
-package com.uni.digitalreports.auth.infrastructure.controller;
+package com.uni.digitalreports.auth.infrastructure;
 
 import com.uni.digitalreports.auth.application.usecase.LoginUseCase;
 import com.uni.digitalreports.auth.application.usecase.RefreshTokenUseCase;

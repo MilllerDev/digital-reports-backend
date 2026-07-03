@@ -42,6 +42,6 @@ public class RefreshTokenService implements RefreshTokenUseCase {
 
         Token newToken = Token.createRefreshToken(refreshToken, user.getId(), jwtService.getRefreshTokenExpiration());
         tokenRepository.save(newToken);
-        return new AuthResponse(accessToken, refreshToken);
+        return new AuthResponse(accessToken, refreshToken, user.getRole());
     }
 }

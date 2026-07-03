@@ -32,6 +32,6 @@ public class RegisterService implements RegisterUseCase {
 
         Token token = Token.createRefreshToken(refreshToken, created.getId(), jwtService.getRefreshTokenExpiration());
         tokenRepository.save(token);
-        return new AuthResponse(accessToken, refreshToken);
+        return new AuthResponse(accessToken, refreshToken, created.getRole());
     }
 }

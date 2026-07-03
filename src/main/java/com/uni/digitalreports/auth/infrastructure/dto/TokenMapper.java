@@ -1,4 +1,4 @@
-package com.uni.digitalreports.auth.infrastructure;
+package com.uni.digitalreports.auth.infrastructure.dto;
 
 import com.uni.digitalreports.auth.domain.model.Token;
 import com.uni.digitalreports.auth.infrastructure.entity.TokenEntity;
