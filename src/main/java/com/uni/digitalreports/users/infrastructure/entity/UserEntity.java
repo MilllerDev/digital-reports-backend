@@ -23,13 +23,13 @@ public class UserEntity {
     @Column(name = "user_dni", nullable = false, unique = true, length = 8)
     private String dni;
 
-    @Column(name = "user_email", nullable = false, unique = true, length = 30)
+    @Column(name = "user_email", nullable = false, unique = true, length = 50)
     private String email;
 
     @Column(name = "user_name", nullable = false, length = 20)
     private String name;
 
-    @Column(name = "user_last_name", nullable = false, length = 30)
+    @Column(name = "user_last_name", nullable = false, length = 50)
     private String lastName;
 
     @Column(name = "encrypted_password", nullable = false)

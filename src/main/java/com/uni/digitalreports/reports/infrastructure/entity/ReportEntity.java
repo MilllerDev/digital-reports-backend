@@ -24,7 +24,7 @@ public class ReportEntity {
     @Column(name = "report_id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "report_asunto", nullable = false, length = 50)
+    @Column(name = "report_asunto", nullable = false, length = 100)
     private String asunto;
 
     @Column(name = "report_description", nullable = false, columnDefinition = "TEXT")
