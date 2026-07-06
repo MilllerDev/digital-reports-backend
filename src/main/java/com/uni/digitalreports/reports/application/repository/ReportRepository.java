@@ -11,9 +11,13 @@ public interface ReportRepository {
 
     Optional<Report> findById(UUID id);
 
-    List<Report> findMine(UUID userId);
-
     Optional<Report> findMine(UUID id, UUID userId);
 
+    boolean exists(UUID id);
+
+    List<Report> findMine(UUID userId);
+
     List<Report> findAll();
+
+    void delete(UUID id);
 }

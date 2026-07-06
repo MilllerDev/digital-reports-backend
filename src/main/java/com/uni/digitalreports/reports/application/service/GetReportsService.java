@@ -3,6 +3,7 @@ package com.uni.digitalreports.reports.application.service;
 import com.uni.digitalreports.reports.application.repository.ReportRepository;
 import com.uni.digitalreports.reports.application.usecase.GetReportUseCase;
 import com.uni.digitalreports.reports.application.usecase.GetReportsUseCase;
+import com.uni.digitalreports.reports.domain.exception.ReportNotFoundException;
 import com.uni.digitalreports.reports.domain.model.Report;
 import com.uni.digitalreports.users.domain.model.UserRole;
 import org.springframework.stereotype.Service;
@@ -30,11 +31,11 @@ public class GetReportsService implements GetReportsUseCase, GetReportUseCase {
     public Report execute(UUID id, UserRole role, UUID userId) {
         if (role == UserRole.ADMIN) {
             return repository.findById(id).orElseThrow(
-                    () -> new RuntimeException("No existe este reporte")
+                    () -> new ReportNotFoundException("No existe este reporte")
             );
         }
         return repository.findMine(id, userId).orElseThrow(
-                () -> new RuntimeException("No existe este reporte")
+                () -> new ReportNotFoundException("No existe este reporte")
         );
     }
 }

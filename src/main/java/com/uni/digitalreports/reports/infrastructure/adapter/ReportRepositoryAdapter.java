@@ -45,8 +45,18 @@ public class ReportRepositoryAdapter implements ReportRepository {
     }
 
     @Override
+    public boolean exists(UUID id) {
+        return repositoryJpa.existsById(id);
+    }
+
+    @Override
     public List<Report> findAll() {
         Sort sort = Sort.by("createdAt").descending();
         return repositoryJpa.findAll(sort).stream().map(mapper::toModel).toList();
+    }
+
+    @Override
+    public void delete(UUID id) {
+        repositoryJpa.deleteById(id);
     }
 }
