@@ -21,5 +21,6 @@ public class Report {
     private BigDecimal longitude;
     private String address;
     private String imageUrl;
+    private ReportStatus status;
     private UUID userId;
 }

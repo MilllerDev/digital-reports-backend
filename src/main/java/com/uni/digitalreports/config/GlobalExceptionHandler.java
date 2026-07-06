@@ -2,6 +2,8 @@ package com.uni.digitalreports.config;
 
 import com.uni.digitalreports.auth.domain.exception.InvalidTokenException;
 import com.uni.digitalreports.auth.domain.exception.TokenRevokedException;
+import com.uni.digitalreports.reports.domain.exception.ReportAccessException;
+import com.uni.digitalreports.reports.domain.exception.ReportNotFoundException;
 import com.uni.digitalreports.users.domain.exception.UserAlreadyExists;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +46,18 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Void>> handleAccessDenied(AccessDeniedException ex) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(ApiResponse.error("Acceso denegado", ex.getMessage()));
+    }
+
+    @ExceptionHandler(ReportNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleReportNotFound(ReportNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.error(ex.getMessage(), null));
+    }
+
+    @ExceptionHandler(ReportAccessException.class)
+    public ResponseEntity<ApiResponse<Void>> handleReportAccess(ReportAccessException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.error(ex.getMessage(), null));
     }
 
     @ExceptionHandler(UserAlreadyExists.class)

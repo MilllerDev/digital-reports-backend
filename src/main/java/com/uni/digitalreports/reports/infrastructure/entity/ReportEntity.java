@@ -1,6 +1,7 @@
 package com.uni.digitalreports.reports.infrastructure.entity;
 
 import com.uni.digitalreports.reports.domain.model.Important;
+import com.uni.digitalreports.reports.domain.model.ReportStatus;
 import com.uni.digitalreports.users.infrastructure.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class ReportEntity {
     @Column(name = "report_id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "report_asunto", nullable = false, length = 50)
+    @Column(name = "report_asunto", nullable = false, length = 100)
     private String asunto;
 
     @Column(name = "report_description", nullable = false, columnDefinition = "TEXT")
@@ -45,6 +46,10 @@ public class ReportEntity {
 
     @Column(name = "report_image_url", columnDefinition = "TEXT")
     private String imageUrl;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "report_status", nullable = false)
+    private ReportStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
