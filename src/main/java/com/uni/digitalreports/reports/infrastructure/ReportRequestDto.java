@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public record ReportRequestDto(
         @NotBlank(message = "El asunto es obligatorio")
-        @Size(max = 20, message = "El asunto no puede superar los 20 caracteres")
+        @Size(max = 100, message = "El asunto no puede superar los 20 caracteres")
         String asunto,
 
         @NotBlank(message = "La descripción es obligatoria")
@@ -26,7 +26,7 @@ public record ReportRequestDto(
         @DecimalMax(value = "180.0", message = "La longitud debe ser menor o igual a 180")
         BigDecimal longitude,
 
-        @Size(max = 200, message = "La dirección no puede superar los 200 caracteres")
+        @Size(max = 250, message = "La dirección no puede superar los 200 caracteres")
         String address,
 
         String imageUrl
