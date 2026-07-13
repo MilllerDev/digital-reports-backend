@@ -16,6 +16,9 @@ public record ReportResponseDto(
         String address,
         String imageUrl,
         ReportStatus status,
+        boolean spam,
+        String spamReason,
+        boolean duplicate,
         UUID userId
 ) {
 }

@@ -22,5 +22,8 @@ public class Report {
     private String address;
     private String imageUrl;
     private ReportStatus status;
+    private boolean spam;
+    private String spamReason;
+    private boolean duplicate;
     private UUID userId;
 }

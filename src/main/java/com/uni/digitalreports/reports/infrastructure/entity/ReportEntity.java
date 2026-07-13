@@ -51,6 +51,15 @@ public class ReportEntity {
     @Column(name = "report_status", nullable = false)
     private ReportStatus status;
 
+    @Column(name = "is_spam", nullable = false)
+    private boolean spam;
+
+    @Column(name = "spam_reason", nullable = false)
+    private String spamReason;
+
+    @Column(name = "is_duplicate", nullable = false)
+    private boolean duplicate;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
