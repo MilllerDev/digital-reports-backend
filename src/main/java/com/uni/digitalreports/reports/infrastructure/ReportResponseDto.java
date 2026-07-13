@@ -4,6 +4,7 @@ import com.uni.digitalreports.reports.domain.model.Important;
 import com.uni.digitalreports.reports.domain.model.ReportStatus;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record ReportResponseDto(
@@ -19,6 +20,7 @@ public record ReportResponseDto(
         boolean spam,
         String spamReason,
         boolean duplicate,
+        LocalDateTime createdAt,
         UUID userId
 ) {
 }

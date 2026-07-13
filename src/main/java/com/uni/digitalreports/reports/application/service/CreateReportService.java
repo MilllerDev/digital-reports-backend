@@ -5,8 +5,10 @@ import com.uni.digitalreports.ai.reports.dto.SpamCheckResult;
 import com.uni.digitalreports.ai.reports.port.AiAnalysisPort;
 import com.uni.digitalreports.reports.application.repository.ReportRepository;
 import com.uni.digitalreports.reports.application.usecase.CreateReportUseCase;
+import com.uni.digitalreports.reports.domain.event.ReportCreatedEvent;
 import com.uni.digitalreports.reports.domain.model.Report;
 import com.uni.digitalreports.reports.domain.model.ReportStatus;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +20,12 @@ public class CreateReportService implements CreateReportUseCase {
 
     private final ReportRepository repository;
     private final AiAnalysisPort aiAnalysisPort;
+    private final ApplicationEventPublisher eventPublisher;
 
-    public CreateReportService(ReportRepository repository, AiAnalysisPort aiAnalysisPort) {
+    public CreateReportService(ReportRepository repository, AiAnalysisPort aiAnalysisPort, ApplicationEventPublisher eventPublisher) {
         this.repository = repository;
         this.aiAnalysisPort = aiAnalysisPort;
+        this.eventPublisher = eventPublisher;
     }
 
     @Override
@@ -44,6 +48,8 @@ public class CreateReportService implements CreateReportUseCase {
                     nearbyReports);
             report.setDuplicate(checkDuplicate.isDuplicate());
         }
-        return repository.save(report);
+        Report saved = repository.save(report);
+        eventPublisher.publishEvent(new ReportCreatedEvent(saved));
+        return saved;
     }
 }
