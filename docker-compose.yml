@@ -10,7 +10,10 @@ services:
       - "5432:5432"
 
   digital-reports-backend:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: digital-reports-backend
     container_name: digital-reports-backend
     env_file:
       - .env

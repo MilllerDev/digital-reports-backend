@@ -7,6 +7,9 @@ import com.uni.digitalreports.reports.infrastructure.repository.ReportRepository
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -56,7 +59,20 @@ public class ReportRepositoryAdapter implements ReportRepository {
     }
 
     @Override
+    public List<Report> findAllToday() {
+        return repositoryJpa.findByCreatedAtBetween(
+                LocalDate.now().atStartOfDay(), LocalDateTime.now()
+        ).stream().map(mapper::toModel).toList();
+    }
+
+    @Override
     public void delete(UUID id) {
         repositoryJpa.deleteById(id);
+    }
+
+    @Override
+    public List<Report> findNearby(BigDecimal latitude, BigDecimal longitude, double radiusKm) {
+        return repositoryJpa.findNearby(latitude, longitude, radiusKm)
+                .stream().map(mapper::toModel).toList();
     }
 }

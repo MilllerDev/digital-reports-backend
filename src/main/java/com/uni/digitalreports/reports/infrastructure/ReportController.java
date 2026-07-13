@@ -1,5 +1,6 @@
 package com.uni.digitalreports.reports.infrastructure;
 
+import com.uni.digitalreports.ai.reports.dto.DailySummaryResult;
 import com.uni.digitalreports.config.ApiResponse;
 import com.uni.digitalreports.reports.application.usecase.*;
 import com.uni.digitalreports.reports.domain.model.Report;
@@ -25,6 +26,7 @@ public class ReportController {
     private final UpdateStatusUseCase updateStatus;
     private final GetReportUseCase getReport;
     private final GetReportsUseCase getReports;
+    private final GetSummaryDayUseCase getSummaryDay;
     private final ReportMapper mapper;
 
     @GetMapping
@@ -71,5 +73,11 @@ public class ReportController {
         return ResponseEntity.ok(
                 ApiResponse.success("Reporte actualizado", response)
         );
+    }
+
+    @GetMapping("/summary")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<ApiResponse<DailySummaryResult>> getChat() {
+        return ResponseEntity.ok(ApiResponse.success("Resumen exitoso", getSummaryDay.execute()));
     }
 }

@@ -1,16 +1,18 @@
 package com.uni.digitalreports.reports.infrastructure;
 
 import com.uni.digitalreports.reports.domain.model.Report;
-import com.uni.digitalreports.reports.domain.model.ReportStatus;
 import com.uni.digitalreports.reports.infrastructure.entity.ReportEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", imports = {ReportStatus.class})
+@Mapper(componentModel = "spring")
 public interface ReportMapper {
-    @Mapping(target = "userId", ignore = true)
+    @Mapping(target = "spamReason", ignore = true)
+    @Mapping(target = "spam", ignore = true)
+    @Mapping(target = "duplicate", ignore = true)
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "status", expression = "java(ReportStatus.PENDIENTE)")
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "userId", ignore = true)
     Report toModel(ReportRequestDto dto);
 
     @Mapping(target = "createdAt", ignore = true)

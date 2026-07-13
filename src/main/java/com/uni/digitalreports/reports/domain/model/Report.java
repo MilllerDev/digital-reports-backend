@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -22,5 +23,9 @@ public class Report {
     private String address;
     private String imageUrl;
     private ReportStatus status;
+    private boolean spam;
+    private String spamReason;
+    private boolean duplicate;
+    private LocalDateTime createdAt;
     private UUID userId;
 }

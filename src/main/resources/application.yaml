@@ -6,6 +6,13 @@ spring:
       enabled: true
   datasource:
     driver-class-name: org.postgresql.Driver
+  ai:
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY}
+        chat:
+          model: gemini-3.1-flash-lite
+          temperature: 0.65
 
   jpa:
     generate-ddl: true
